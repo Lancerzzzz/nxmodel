@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+
+# -*- coding: utf-8 -*-
+# @Time    : 5/17/2019 3:44 PM
+# @Author  : Lxz
 from swmodel.topsystem import TopSystem
 
 
@@ -28,12 +33,12 @@ class InterfaceEntity(TopSystem.TopSystem):
             }
         return self.att
 
-    def local_payload_children(self, pd={}):
+    def local_payload_children(self, pd):
         self.children = {
             "children": [pd]
         }
 
-    def update_payload(self, pd={}):
+    def update_payload(self, pd):
         self.payload = {
             "interfaceEntity": {
             }
@@ -41,3 +46,6 @@ class InterfaceEntity(TopSystem.TopSystem):
         self.local_payload_children(**pd)
         self.payload["interfaceEntity"].update(self.children)
         return super().update_payload(self.payload)
+
+    def get_final_pd(self):
+        pass

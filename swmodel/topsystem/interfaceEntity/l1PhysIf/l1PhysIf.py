@@ -1,8 +1,15 @@
+#!/usr/bin/python3
+
+# -*- coding: utf-8 -*-
+# @Time    : 5/17/2019 3:44 PM
+# @Author  : Lxz
 from swmodel.topsystem.interfaceEntity import interfaceEntity
 import json
 
+
 class l1PhysIf(interfaceEntity.InterfaceEntity):
-    def __init__(self, **conf_param):
+
+    def __init__(self, conf_param):
         self.payload = {}
         self.children = []
         self.att = {}
@@ -62,13 +69,12 @@ class l1PhysIf(interfaceEntity.InterfaceEntity):
             "voiceVlanId": "none",
             "voiceVlanType": "none"
         }
-
         self.conf_param = conf_param
 
     def local_payload_att(self):
         for i in self.conf_param.keys():
             if i not in self.Configurable_Properties.keys():
-                return {}
+                return None
         self.att = {
                 "attributes": self.conf_param
             }
@@ -79,7 +85,7 @@ class l1PhysIf(interfaceEntity.InterfaceEntity):
             "children": [kws]
         }
 
-    def update_payload(self, pd={}):
+    def update_payload(self, pd):
         self.payload = {
             "l1PhysIf": {
             }
@@ -88,9 +94,11 @@ class l1PhysIf(interfaceEntity.InterfaceEntity):
         self.payload["l1PhysIf"].update(self.att)
         return super().update_payload(self.payload)
 
+    def get_final_pd(self):
+
+        pass
 
 
-a = l1PhysIf(id="eth1/1", mode="trunk", trunkVlans="10-20")
-json.dumps(a.update_payload())
+
 
 

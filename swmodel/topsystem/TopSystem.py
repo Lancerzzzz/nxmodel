@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+
+# -*- coding: utf-8 -*-
+# @Time    : 5/17/2019 3:44 PM
+# @Author  : Lxz
+
 
 class TopSystem(object):
 
@@ -33,12 +39,12 @@ class TopSystem(object):
         }
         return self.att
 
-    def local_payload_children(self, pd={}):
+    def local_payload_children(self, pd):
         self.children = {
             "children": [pd]
         }
 
-    def update_payload(self, pd={}):
+    def update_payload(self, pd):
         self.payload = {
             "topSystem": {
             }
@@ -47,4 +53,7 @@ class TopSystem(object):
         self.payload["topSystem"].update(self.children)
         print(self.payload)
         return self.payload
+
+    def get_final_pd(self):
+        pass
 
